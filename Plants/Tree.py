@@ -32,7 +32,8 @@ class AppleTree(Plant):
 
 
 
-
+    def add_day(self):
+        pass
 
 
 

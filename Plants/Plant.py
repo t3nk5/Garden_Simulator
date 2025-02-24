@@ -1,4 +1,5 @@
 from abc import ABC,abstractmethod
+
 from Maturity.maturity import Maturity
 
 
@@ -75,3 +76,17 @@ class Plant(ABC):
             self.cut = 8
         else:
             print("You can't cut")
+
+
+    def check_cut_plant(self) -> bool:
+        if self.cut == 0:
+            return True
+        else:
+            return False
+
+    def change_maturity(self, maturity) -> None:
+        self.maturity = maturity
+
+    @abstractmethod
+    def add_day(self):
+        pass

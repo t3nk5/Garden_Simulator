@@ -5,6 +5,12 @@ class Garden:
         self.plants = plants
 
 
+    def add_day(self):
+        for plant in self.plants:
+            plant.add_day()
+
+
+
     def get_report(self):
         report = ""
         for plant in self.plants: report += f'{plant}\n\n'

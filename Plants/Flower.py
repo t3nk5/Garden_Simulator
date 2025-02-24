@@ -31,6 +31,8 @@ class Flower(Plant):
             pass
 
 
+    def add_day(self):
+        pass
 
 
 
