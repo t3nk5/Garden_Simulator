@@ -1,4 +1,5 @@
 from abc import ABC,abstractmethod
+from Maturity.maturity import Maturity
 
 
 class Plant(ABC):
@@ -8,6 +9,7 @@ class Plant(ABC):
         self.speed_to_growth = speed_to_growth
         self.fertilizer_required = fertilizer_required
         self.health = health
+        self.maturity = Maturity.SEED
         self.water = 0
         self.light = 0
         self.speed = 0

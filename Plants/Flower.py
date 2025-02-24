@@ -1,9 +1,11 @@
 from Plants.Plant import Plant
+from Maturity.maturity import FinaleState
 
 
 class Flower(Plant):
     def __init__(self, water_requirements, light_requirements, fertilizer_required, speed_to_growth, health, color) -> None:
         super().__init__(water_requirements, light_requirements, fertilizer_required, speed_to_growth, health)
+        self.FinaleState = FinaleState.BLOOM
         self.color = color
 
 
