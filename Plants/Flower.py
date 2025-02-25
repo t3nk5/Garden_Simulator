@@ -5,6 +5,7 @@ from Maturity.maturity import FinaleState
 class Flower(Plant):
     def __init__(self, water_requirements, light_requirements, fertilizer_required, speed_to_growth, health, color) -> None:
         super().__init__(water_requirements, light_requirements, fertilizer_required, speed_to_growth, health)
+        self.name = "Flower"
         self.FinaleState = FinaleState.BLOOM
         self.color = color
 
@@ -42,4 +43,13 @@ class Flower(Plant):
 
 
     def __str__(self) -> str:
-        return f'Color: {self.color}\nSize: {self.size}\nWater requirement: {self.water}/{self.water_requirements}\nLight requirement: {self.light}/{self.light_requirements}\nFertilizer: {self.fertilizer}/{self.fertilizer_required}\nSpeed growth: {self.speed}/{self.speed_to_growth}'
+        return (
+            f"🌱 {self.name} \n"
+            f"🌸 Color: {self.color}\n"
+            f"📏 Size: {self.size}\n"
+            f"💧 Water requirement: {self.water}/{self.water_requirements}\n"
+            f"☀️ Light requirement: {self.light}/{self.light_requirements}\n"
+            f"🌱 Fertilizer: {self.fertilizer}/{self.fertilizer_required}\n"
+            f"⚡ Speed growth: {self.speed}/{self.speed_to_growth}\n"
+            f"❤️ Health: {self.health}\n"
+        )
