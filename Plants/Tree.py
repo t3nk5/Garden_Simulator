@@ -1,31 +1,33 @@
 from Plants.Plant import Plant
-from Maturity.maturity import FinaleState
+from Maturity.maturity import FinaleState, Maturity
 
 
 class AppleTree(Plant):
     def __init__(self, water_requirements, light_requirements, fertilizer_required, speed_to_growth, health) -> None:
         super().__init__(water_requirements, light_requirements, fertilizer_required, speed_to_growth, health)
         self.name = "Apple Tree"
+        self.maturity = Maturity.SEED
         self.FinaleState = FinaleState.FRUCTIFY
+        self.actual_cut = 0
 
     def give_water(self, water) -> None:
         if super().check_water(water):
             self.water += water
-            print(super().check_water_for_growth())
+            super().check_water_for_growth()
         else:
             pass
 
     def change_light(self, light) -> None:
         if super().check_light(light):
             self.light += light
-            print(super().check_light_for_growth())
+            super().check_light_for_growth()
         else:
             pass
 
     def add_fertilizer(self, fertilizer) -> None:
         if super().check_fertilizer(fertilizer):
             self.fertilizer += fertilizer
-            print(super().check_fertilizer_for_growth())
+            super().check_fertilizer_for_growth()
         else:
             pass
 
@@ -42,4 +44,5 @@ class AppleTree(Plant):
             f"🌱 Fertilizer: {self.fertilizer}/{self.fertilizer_required}\n"
             f"⚡ Speed growth: {self.speed}/{self.speed_to_growth}\n"
             f"❤️ Health: {self.health}\n"
+            f"🤓 Maturity: {self.maturity.name}\n"
         )
