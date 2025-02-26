@@ -2,7 +2,7 @@ from abc import ABC,abstractmethod
 
 from Maturity.maturity import Maturity
 
-
+@abstractmethod
 class Plant(ABC):
     def __init__(self, water_requirements, light_requirements, fertilizer_required, speed_to_growth, health) -> None:
         self.water_requirements = water_requirements
@@ -17,6 +17,11 @@ class Plant(ABC):
         self.size = 0
         self.fertilizer = 0
         self.cut = 0
+        self.name = "Plant"
+
+
+    def get_name(self):
+        return f"{self.name}\n"
 
     @abstractmethod
     def give_water(self, water) -> None:
@@ -57,7 +62,7 @@ class Plant(ABC):
         pass
 
     @staticmethod
-    def check_fertilizer(fertilizer) -> bool: return 0 < fertilizer < 5
+    def check_fertilizer(fertilizer) -> bool: return 0 < fertilizer < 10
 
     def check_fertilizer_for_growth(self):
         diff = abs(self.fertilizer - self.fertilizer_required)
@@ -69,8 +74,11 @@ class Plant(ABC):
         elif diff <= 1:
             self.speed = self.speed_to_growth
 
+    def cut(self):
+        if self.check_cut_plant():
+            pass
 
-    def cut_plant(self):
+    def cut_plant_for_growth(self):
         if self.cut == 0:
             self.speed *= 1.01
             self.cut = 8
