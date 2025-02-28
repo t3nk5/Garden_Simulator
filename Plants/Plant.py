@@ -74,23 +74,21 @@ class Plant(ABC):
         elif diff <= 1:
             self.speed = self.speed_to_growth
 
-    def cut(self):
+    def cut_plant(self) -> bool:
         if self.check_cut_plant():
-            pass
+            self.cut_plant_for_growth()
+            self.cut = 6
+            return True
+        else:
+            print("You can't cut plant")
+            return False
 
     def cut_plant_for_growth(self):
-        if self.cut == 0:
-            self.speed *= 1.01
-            self.cut = 8
-        else:
-            print("You can't cut")
+            self.speed *= 1.04
 
 
     def check_cut_plant(self) -> bool:
-        if self.cut == 0:
-            return True
-        else:
-            return False
+        return self.cut == 0
 
     def change_maturity(self, maturity) -> None:
         self.maturity = maturity
