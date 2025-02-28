@@ -1,6 +1,7 @@
-from test import test
+import random
 from utils import *
 from Game.Game import Game
+from Events.event import Event
 
 
 NUMBER_OF_PLANTS = 2
@@ -11,10 +12,17 @@ def main():
     game = Game(player_name)
 
     game.start(NUMBER_OF_PLANTS)
-    game.display_garden()
 
-    game.choose_action()
-    game.display_garden()
+    finish = False
+    while not finish:
+        game.display_garden()
+        game.choose_action()
+
+        random_event = random.uniform(0.0, 1.0) < 0.1
+        if random_event:
+            event = Event()
+            print(event.__str__())
+            game.event(event)
 
 
 
