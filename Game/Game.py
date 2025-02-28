@@ -1,5 +1,7 @@
 import utils
 from Garden import Garden
+from utils import choose_action
+from Events.event import Event
 
 class Game:
     def __init__(self, name_player:str) -> None:
@@ -24,7 +26,6 @@ class Game:
         if action == 1:
             print("\nGive water to which plant ?")
             self.garden.get_name_plants()
-            print(len(self.garden.plants))
             result = utils.get_valid_number(len(self.garden.plants))
             selected_plant = self.garden.plants[result - 1]
             print(selected_plant.__str__())
@@ -52,7 +53,9 @@ class Game:
             result = utils.get_valid_number(len(self.garden.plants))
             selected_plant = self.garden.plants[result - 1]
             print(selected_plant.__str__())
-            #selected_plant.cut
+            if selected_plant.cut_plant():
+                pass
+            else: choose_action()
 
 
         elif action == 5:
@@ -61,4 +64,21 @@ class Game:
             pass
 
 
+
+    def event(self, event: Event) -> None:
+        intensity = event.intensity
+        if event.event_type == event.event_type.STORM:
+            for plant in self.garden.plants:
+                plant.water += intensity
+                plant.health -= intensity
+        elif event.event_type == event.event_type.DROUGHT:
+            for plant in self.garden.plants:
+                plant.water -= intensity
+                plant.health += intensity
+        elif event.event_type == event.event_type.PARASITE:
+            for plant in self.garden.plants:
+                plant.health -= intensity * 2
+        elif event.event_type == event.event_type.DISEASE:
+            for plant in self.garden.plants:
+                plant.health -= intensity
 
