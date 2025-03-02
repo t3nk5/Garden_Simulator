@@ -74,11 +74,25 @@ class Game:
         elif event.event_type == event.event_type.DROUGHT:
             for plant in self.garden.plants:
                 plant.water -= intensity
-                plant.health += intensity
+                plant.health -= intensity
         elif event.event_type == event.event_type.PARASITE:
             for plant in self.garden.plants:
                 plant.health -= intensity * 2
         elif event.event_type == event.event_type.DISEASE:
             for plant in self.garden.plants:
-                plant.health -= intensity
+                plant.health -= int(intensity)
 
+
+    def pass_day(self) -> None:
+        for plant in self.garden.plants:
+            plant.pass_day()
+
+    def is_finished(self) -> bool:
+        nbr_plant_alive = 0
+        for plant in self.garden.plants:
+            if plant.check_is_dead():
+                pass
+            else:
+                nbr_plant_alive += 1
+
+        return nbr_plant_alive > 0
