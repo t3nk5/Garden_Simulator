@@ -32,9 +32,8 @@ class Flower(Plant):
         else:
             pass
 
-
-    def add_day(self):
-        pass
+    def dead(self):
+        self.FinaleState = FinaleState.DEAD
 
 
 
@@ -54,4 +53,5 @@ class Flower(Plant):
             f"⚡ Speed growth: {self.speed}/{self.speed_to_growth}\n"
             f"❤️ Health: {self.health}\n"
             f"🤓 Maturity: {self.maturity.name}\n"
+            f"🤓 Day: {self.day}\n"
         )
