@@ -1,6 +1,6 @@
 from abc import ABC,abstractmethod
 
-from Maturity.maturity import Maturity
+from Maturity.maturity import Maturity, FinaleState
 
 @abstractmethod
 class Plant(ABC):
@@ -18,9 +18,11 @@ class Plant(ABC):
         self.fertilizer = 0
         self.cut = 0
         self.name = "Plant"
+        self.day = 0
 
 
-    def get_name(self):
+
+    def get_name(self) -> str:
         return f"{self.name}\n"
 
     @abstractmethod
@@ -30,7 +32,7 @@ class Plant(ABC):
     @staticmethod
     def check_water(water) -> bool: return 0 < water < 11
 
-    def check_water_for_growth(self):
+    def check_water_for_growth(self) -> None:
         diff = abs(self.water - self.water_requirements)
 
         if diff > 5:
@@ -47,7 +49,7 @@ class Plant(ABC):
     @staticmethod
     def check_light(light)-> bool: return 0 < light < 15
 
-    def check_light_for_growth(self):
+    def check_light_for_growth(self) -> None:
         diff = abs(self.light - self.light_requirements)
 
         if diff > 5:
@@ -64,7 +66,7 @@ class Plant(ABC):
     @staticmethod
     def check_fertilizer(fertilizer) -> bool: return 0 < fertilizer < 10
 
-    def check_fertilizer_for_growth(self):
+    def check_fertilizer_for_growth(self) -> None:
         diff = abs(self.fertilizer - self.fertilizer_required)
 
         if diff > 5:
@@ -93,6 +95,26 @@ class Plant(ABC):
     def change_maturity(self, maturity) -> None:
         self.maturity = maturity
 
+
+    def check_day(self):
+        if self.day >= 15:
+            self.maturity = Maturity.YOUNG
+        if self.day >=30:
+            self.maturity = Maturity.ADULT
+
+
+    def pass_day(self):
+        self.day += 1
+        self.check_day()
+        self.size += self.speed
+
     @abstractmethod
-    def add_day(self):
+    def dead(self):
         pass
+
+    def check_is_dead(self) -> bool:
+        if self.health <=0:
+            self.dead()
+            return True
+        else:
+            return False
