@@ -17,12 +17,16 @@ def main():
     while not finish:
         game.display_garden()
         game.choose_action()
+        game.pass_day()
 
         random_event = random.uniform(0.0, 1.0) < 0.1
         if random_event:
             event = Event()
             print(event.__str__())
             game.event(event)
+
+        if game.is_finished():
+            finish = True
 
 
 
