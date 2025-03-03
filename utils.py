@@ -1,3 +1,4 @@
+from Plants.Salad import Salad
 from Plants.Tree import *
 from Plants.Flower import *
 from Plants.Enum_Plant import CREATE_PLANTS
@@ -13,7 +14,6 @@ def get_valid_number(max_value :int) -> int:
         except ValueError:
             print("Invalid entry. Please enter a whole number.")
 
-
 def choose_plants_to_beginning(number_of_plants: int) -> list:
     print("\nStart to cultivate your garden ;)\nYou can choose 2 plants")
     chosen_plants = []
@@ -26,9 +26,11 @@ def choose_plants_to_beginning(number_of_plants: int) -> list:
         plant_choice = get_valid_number(len(CREATE_PLANTS))
 
         if CREATE_PLANTS(plant_choice) == CREATE_PLANTS.TREE:
-            chosen_plants.append(AppleTree(5, 7, 4, 0.07, 150))
+            chosen_plants.append(AppleTree(5, 7, 4, 0.3, 125))
         elif CREATE_PLANTS(plant_choice) == CREATE_PLANTS.FLOWER:
-            chosen_plants.append(Flower(5, 10, 5, 0.2, 50, "red"))
+            chosen_plants.append(Flower(5, 10, 5, 0.1, 30, "red"))
+        elif CREATE_PLANTS(plant_choice) == CREATE_PLANTS.SALAD:
+            chosen_plants.append(Salad(7, 8, 3, 0.2, 50))
 
     return chosen_plants
 
@@ -40,3 +42,4 @@ def choose_action() -> int:
     display_actions()
     action = get_valid_number(6)
     return action
+
