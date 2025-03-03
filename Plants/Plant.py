@@ -1,6 +1,8 @@
+import random
+from typing import Optional
 from abc import ABC,abstractmethod
 
-from Maturity.maturity import Maturity, FinaleState
+from Maturity.Maturity import Maturity
 
 @abstractmethod
 class Plant(ABC):
@@ -19,8 +21,6 @@ class Plant(ABC):
         self.cut = 0
         self.name = "Plant"
         self.day = 0
-
-
 
     def get_name(self) -> str:
         return f"{self.name}\n"
@@ -88,25 +88,35 @@ class Plant(ABC):
     def cut_plant_for_growth(self):
             self.speed *= 1.04
 
-
     def check_cut_plant(self) -> bool:
         return self.cut == 0
 
-    def change_maturity(self, maturity) -> None:
-        self.maturity = maturity
-
 
     def check_day(self):
-        if self.day >= 15:
+        if self.day >= 5:
             self.maturity = Maturity.YOUNG
-        if self.day >=30:
+        if self.day >=10:
             self.maturity = Maturity.ADULT
+
+    def new_day(self):
+        if self.water - random.randint(1,2) < 0:
+            self.water = 0
+        else:
+            self.water -= random.randint(1, 2)
+
+        if self.fertilizer - random.randint(1,2) < 0:
+            self.fertilizer = 0
+        else:
+            self.fertilizer -= random.randint(1,2)
 
 
     def pass_day(self):
         self.day += 1
         self.check_day()
         self.size += self.speed
+        self.new_day()
+
+
 
     @abstractmethod
     def dead(self):
@@ -118,3 +128,17 @@ class Plant(ABC):
             return True
         else:
             return False
+
+    @abstractmethod
+    def check_maturity(self) -> Optional[tuple[str, int]]:
+        pass
+
+    def __str__(self) -> str:
+        return (
+        f"📏 Size: {self.size}\n"
+        f"💧 Water requirement: {self.water}/{self.water_requirements}\n"
+        f"☀️ Light requirement: {self.light}/{self.light_requirements}\n"
+        f"🌱 Fertilizer: {self.fertilizer}/{self.fertilizer_required}\n"
+        f"⚡ Speed growth: {self.speed}/{self.speed_to_growth}\n"
+        f"❤️ Health: {self.health}\n"
+        )
