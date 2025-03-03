@@ -4,6 +4,8 @@ class Garden:
     def __init__(self, plants: [Plant]):
         self.plants = plants
 
+    def __add__(self, plant: Plant):
+        self.plants.append(plant)
 
     def add_day(self):
         for plant in self.plants:
