@@ -1,3 +1,6 @@
+import random
+from typing import Optional
+
 from Plants.Plant import Plant
 from Maturity.maturity import FinaleState, Maturity
 
@@ -34,16 +37,17 @@ class AppleTree(Plant):
     def dead(self):
         self.FinaleState = FinaleState.DEAD
 
+    def check_maturity(self) -> Optional[tuple[str, int]]:
+        if self.FinaleState == FinaleState.FRUCTIFY and self.maturity == Maturity.ADULT:
+            nbr_seed = random.randint(1, 4)
+            return self.name, nbr_seed
+
+
 
     def __str__(self) -> str:
         return (
-            f"🌱 {self.name} \n"
-            f"📏 Size: {self.size}\n"
-            f"💧 Water requirement: {self.water}/{self.water_requirements}\n"
-            f"☀️ Light requirement: {self.light}/{self.light_requirements}\n"
-            f"🌱 Fertilizer: {self.fertilizer}/{self.fertilizer_required}\n"
-            f"⚡ Speed growth: {self.speed}/{self.speed_to_growth}\n"
-            f"❤️ Health: {self.health}\n"
+            f"🌱 {self.name} \n"+
+            super().__str__() +
             f"🤓 Maturity: {self.maturity.name}\n"
             f"🤓 Day: {self.day}\n"
         )
