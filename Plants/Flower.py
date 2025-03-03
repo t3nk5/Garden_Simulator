@@ -1,3 +1,6 @@
+import random
+from typing import Optional
+
 from Plants.Plant import Plant
 from Maturity.maturity import FinaleState, Maturity
 
@@ -35,23 +38,18 @@ class Flower(Plant):
     def dead(self):
         self.FinaleState = FinaleState.DEAD
 
-
-
-
-
+    def check_maturity(self) -> Optional[tuple[str, int]]:
+        if self.FinaleState == FinaleState.BLOOM and self.maturity == Maturity.ADULT:
+            nbr_flower = random.randint(1, 7)
+            return self.name, nbr_flower
 
 
 
     def __str__(self) -> str:
         return (
             f"🌱 {self.name} \n"
-            f"🌸 Color: {self.color}\n"
-            f"📏 Size: {self.size}\n"
-            f"💧 Water requirement: {self.water}/{self.water_requirements}\n"
-            f"☀️ Light requirement: {self.light}/{self.light_requirements}\n"
-            f"🌱 Fertilizer: {self.fertilizer}/{self.fertilizer_required}\n"
-            f"⚡ Speed growth: {self.speed}/{self.speed_to_growth}\n"
-            f"❤️ Health: {self.health}\n"
+            f"♥️ {self.color} \n"+
+            super().__str__() +
             f"🤓 Maturity: {self.maturity.name}\n"
             f"🤓 Day: {self.day}\n"
         )
