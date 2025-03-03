@@ -2,7 +2,7 @@ import random
 from typing import Optional
 
 from Plants.Plant import Plant
-from Maturity.maturity import FinaleState, Maturity
+from Maturity.Maturity import FinaleState, Maturity
 
 
 class AppleTree(Plant):

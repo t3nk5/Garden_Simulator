@@ -1,7 +1,7 @@
 import random
-from utils import *
+from Utils import *
 from Game.Game import Game
-from Events.event import Event
+from Events.Event import Event
 
 
 NUMBER_OF_PLANTS = 2
@@ -17,7 +17,6 @@ def main():
     while not finish:
         game.display_garden()
         game.choose_action()
-        game.pass_day()
 
         random_event = random.uniform(0.0, 1.0) < 0.1
         if random_event:

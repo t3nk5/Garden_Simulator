@@ -2,7 +2,7 @@ import random
 from typing import Optional
 
 from Plants.Plant import Plant
-from Maturity.maturity import FinaleState, Maturity
+from Maturity.Maturity import FinaleState, Maturity
 
 class Salad(Plant):
     def __init__(self, water_requirements, light_requirements, fertilizer_required, speed_to_growth, health) -> None:
