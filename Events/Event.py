@@ -1,6 +1,6 @@
 import random
-from Events.enum_events import EventType
-from Events.intensity import Intensity
+from Events.Enum_events import EventType
+from Events.Intensity import Intensity
 
 
 
